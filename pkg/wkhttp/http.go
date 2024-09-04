@@ -283,6 +283,21 @@ func (l *WKHttp) AuthMiddleware(cache cache.Cache, tokenPrefix string) HandlerFu
 	}
 }
 
+// Api管理员权限中间件
+func (l *WKHttp) ApiAdminMiddleware(manageToken string) HandlerFunc {
+	return func(c *Context) {
+		token := c.GetHeader("manageToken")
+		if token == "" || manageToken != token {
+			c.AbortWithStatusJSON(http.StatusUnauthorized, gin.H{
+				"msg": "无权访问",
+			})
+			return
+		} else {
+			c.Next()
+		}
+	}
+}
+
 // GetLoginUID GetLoginUID
 func GetLoginUID(token string, tokenPrefix string, cache cache.Cache) string {
 	uid, err := cache.Get(tokenPrefix + token)
