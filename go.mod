@@ -1,4 +1,4 @@
-module github.com/TangSengDaoDao/TangSengDaoDaoServerLib
+module github.com/vera-byte/vera_im_lib
 
 go 1.20
 
