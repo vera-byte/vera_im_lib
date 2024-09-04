@@ -125,6 +125,11 @@ func (c *Context) AuthMiddleware(r *wkhttp.WKHttp) wkhttp.HandlerFunc {
 	return r.AuthMiddleware(c.Cache(), c.cfg.Cache.TokenCachePrefix)
 }
 
+// API管理员
+func (c *Context) ApiAdminMiddleware(r *wkhttp.WKHttp) wkhttp.HandlerFunc {
+	return r.ApiAdminMiddleware(c.cfg.ApiManage.Token)
+}
+
 // GetRedisConn GetRedisConn
 func (c *Context) GetRedisConn() *redis.Conn {
 	return c.NewRedisCache().GetRedisConn()
