@@ -3,8 +3,8 @@ package config
 import (
 	"fmt"
 
-	"github.com/TangSengDaoDao/TangSengDaoDaoServerLib/common"
-	"github.com/TangSengDaoDao/TangSengDaoDaoServerLib/pkg/util"
+	"github.com/vera-byte/vera_im_lib/common"
+	"github.com/vera-byte/vera_im_lib/pkg/util"
 )
 
 // rtc 挂断

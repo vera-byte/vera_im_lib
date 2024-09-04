@@ -1,6 +1,6 @@
 package model
 
-import "github.com/TangSengDaoDao/TangSengDaoDaoServerLib/config"
+import "github.com/vera-byte/vera_im_lib/config"
 
 type ChannelResp struct {
 	Channel struct {

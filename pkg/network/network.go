@@ -9,8 +9,8 @@ import (
 	"net/url"
 	"strings"
 
-	"github.com/TangSengDaoDao/TangSengDaoDaoServerLib/pkg/util"
 	"github.com/sendgrid/rest"
+	"github.com/vera-byte/vera_im_lib/pkg/util"
 )
 
 func Post(url string, body []byte, headers map[string]string) (resp *rest.Response, err error) {

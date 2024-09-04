@@ -4,8 +4,8 @@ import (
 	"fmt"
 	"strings"
 
-	"github.com/TangSengDaoDao/TangSengDaoDaoServerLib/common"
-	"github.com/TangSengDaoDao/TangSengDaoDaoServerLib/pkg/util"
+	"github.com/vera-byte/vera_im_lib/common"
+	"github.com/vera-byte/vera_im_lib/pkg/util"
 )
 
 // SendGroupCreate 发送群创建的消息

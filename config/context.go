@@ -5,18 +5,18 @@ import (
 	"time"
 
 	"github.com/RussellLuo/timingwheel"
-	"github.com/TangSengDaoDao/TangSengDaoDaoServerLib/common"
-	"github.com/TangSengDaoDao/TangSengDaoDaoServerLib/pkg/cache"
-	"github.com/TangSengDaoDao/TangSengDaoDaoServerLib/pkg/db"
-	"github.com/TangSengDaoDao/TangSengDaoDaoServerLib/pkg/log"
-	"github.com/TangSengDaoDao/TangSengDaoDaoServerLib/pkg/pool"
-	"github.com/TangSengDaoDao/TangSengDaoDaoServerLib/pkg/redis"
-	"github.com/TangSengDaoDao/TangSengDaoDaoServerLib/pkg/wkevent"
-	"github.com/TangSengDaoDao/TangSengDaoDaoServerLib/pkg/wkhttp"
 	"github.com/bwmarrin/snowflake"
 	"github.com/gocraft/dbr/v2"
 	"github.com/olivere/elastic"
 	"github.com/opentracing/opentracing-go"
+	"github.com/vera-byte/vera_im_lib/common"
+	"github.com/vera-byte/vera_im_lib/pkg/cache"
+	"github.com/vera-byte/vera_im_lib/pkg/db"
+	"github.com/vera-byte/vera_im_lib/pkg/log"
+	"github.com/vera-byte/vera_im_lib/pkg/pool"
+	"github.com/vera-byte/vera_im_lib/pkg/redis"
+	"github.com/vera-byte/vera_im_lib/pkg/wkevent"
+	"github.com/vera-byte/vera_im_lib/pkg/wkhttp"
 )
 
 // Context 配置上下文

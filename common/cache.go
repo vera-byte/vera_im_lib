@@ -4,7 +4,7 @@ import (
 	"sync"
 	"time"
 
-	"github.com/TangSengDaoDao/TangSengDaoDaoServerLib/pkg/redis"
+	"github.com/vera-byte/vera_im_lib/pkg/redis"
 )
 
 // RedisCache redis缓存

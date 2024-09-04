@@ -1,7 +1,7 @@
 package config
 
 import (
-	"github.com/TangSengDaoDao/TangSengDaoDaoServerLib/common"
+	"github.com/vera-byte/vera_im_lib/common"
 	"go.uber.org/zap"
 )
 

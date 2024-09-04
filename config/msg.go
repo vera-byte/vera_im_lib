@@ -7,11 +7,11 @@ import (
 	"net/http"
 	"strings"
 
-	"github.com/TangSengDaoDao/TangSengDaoDaoServerLib/common"
-	"github.com/TangSengDaoDao/TangSengDaoDaoServerLib/pkg/network"
-	"github.com/TangSengDaoDao/TangSengDaoDaoServerLib/pkg/util"
 	"github.com/sendgrid/rest"
 	"github.com/tidwall/gjson"
+	"github.com/vera-byte/vera_im_lib/common"
+	"github.com/vera-byte/vera_im_lib/pkg/network"
+	"github.com/vera-byte/vera_im_lib/pkg/util"
 	"go.uber.org/zap"
 )
 

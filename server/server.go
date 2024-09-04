@@ -6,13 +6,13 @@ import (
 	"path/filepath"
 	"strings"
 
-	"github.com/TangSengDaoDao/TangSengDaoDaoServerLib/config"
-	"github.com/TangSengDaoDao/TangSengDaoDaoServerLib/module"
-	"github.com/TangSengDaoDao/TangSengDaoDaoServerLib/pkg/log"
-	"github.com/TangSengDaoDao/TangSengDaoDaoServerLib/pkg/register"
-	"github.com/TangSengDaoDao/TangSengDaoDaoServerLib/pkg/wkhttp"
 	"github.com/judwhite/go-svc"
 	"github.com/unrolled/secure"
+	"github.com/vera-byte/vera_im_lib/config"
+	"github.com/vera-byte/vera_im_lib/module"
+	"github.com/vera-byte/vera_im_lib/pkg/log"
+	"github.com/vera-byte/vera_im_lib/pkg/register"
+	"github.com/vera-byte/vera_im_lib/pkg/wkhttp"
 )
 
 // Server唐僧叨叨server
