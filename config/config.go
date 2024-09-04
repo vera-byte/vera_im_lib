@@ -737,7 +737,7 @@ func (c *Config) ConfigureWithViper(vp *viper.Viper) {
 	c.Support.EmailPwd = c.getString("support.emailPwd", c.Support.EmailPwd)
 
 	//#################### Api Manage ####################
-	c.Support.Email = c.getString("apiManage.token", c.ApiManage.Token)
+	c.ApiManage.Token = c.getString("apiManage.token", c.ApiManage.Token)
 }
 
 func (c *Config) ConfigFileUsed() string {
