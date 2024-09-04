@@ -249,6 +249,11 @@ type Config struct {
 		EmailSmtp string // 技术支持的邮箱的smtp
 		EmailPwd  string // 邮箱密码
 	}
+	// ---------- api manage ----------
+
+	ApiManage struct {
+		Token string // 管理员Token
+	}
 
 	// ---------- 其他 ----------
 
@@ -273,8 +278,8 @@ func New() *Config {
 	cfg := &Config{
 		// ---------- 基础配置 ----------
 		Mode:                        ReleaseMode,
-		AppID:                       "tangsengdaodao",
-		AppName:                     "唐僧叨叨",
+		AppID:                       "-",
+		AppName:                     "-",
 		Addr:                        ":8090",
 		GRPCAddr:                    "0.0.0.0:6979",
 		PhoneSearchOff:              false,
@@ -474,6 +479,13 @@ func New() *Config {
 			Email:     "",
 			EmailSmtp: "smtp.exmail.qq.com:25",
 			EmailPwd:  "",
+		},
+
+		// ---------- Api Manage  ----------
+		ApiManage: struct {
+			Token string
+		}{
+			Token: "",
 		},
 
 		QRCodeInfoURL: "v1/qrcode/:code",
@@ -724,6 +736,8 @@ func (c *Config) ConfigureWithViper(vp *viper.Viper) {
 	c.Support.EmailSmtp = c.getString("support.emailSmtp", c.Support.EmailSmtp)
 	c.Support.EmailPwd = c.getString("support.emailPwd", c.Support.EmailPwd)
 
+	//#################### Api Manage ####################
+	c.Support.Email = c.getString("apiManage.token", c.ApiManage.Token)
 }
 
 func (c *Config) ConfigFileUsed() string {
