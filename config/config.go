@@ -217,7 +217,9 @@ type Config struct {
 	}
 	// ---------- push ----------
 	Push struct {
-		ContentDetailOn bool         //  推送是否显示正文详情(如果为false，则只显示“您有一条新的消息” 默认为true)
+		UmengPushOn     bool         // 是否开启友盟推送 开启则不走厂商推送
+		Umeng           UmengPush    // 友盟推送
+		ContentDetailOn bool         // 推送是否显示正文详情(如果为false，则只显示“您有一条新的消息” 默认为true)
 		PushPoolSize    int64        // 推送任务池大小
 		APNS            APNSPush     // 苹果推送
 		MI              MIPush       // 小米推送
@@ -452,6 +454,8 @@ func New() *Config {
 		},
 		// ---------- push  ----------
 		Push: struct {
+			UmengPushOn     bool
+			Umeng           UmengPush
 			ContentDetailOn bool
 			PushPoolSize    int64
 			APNS            APNSPush
@@ -461,6 +465,8 @@ func New() *Config {
 			OPPO            OPPOPush
 			FIREBASE        FIREBASEPush
 		}{
+			UmengPushOn:     false,
+			Umeng:           UmengPush{},
 			ContentDetailOn: true,
 			PushPoolSize:    100,
 			APNS: APNSPush{
@@ -691,6 +697,10 @@ func (c *Config) ConfigureWithViper(vp *viper.Viper) {
 	//#################### push ####################
 	c.Push.ContentDetailOn = c.getBool("push.contentDetailOn", c.Push.ContentDetailOn)
 	c.Push.PushPoolSize = c.getInt64("push.pushPoolSize", c.Push.PushPoolSize)
+	c.Push.UmengPushOn = c.getBool("push.umengPushOn", c.Push.UmengPushOn)
+	c.Push.Umeng.Appkey = c.getString("push.umengPushOn.appKey", c.Push.Umeng.Appkey)
+	c.Push.Umeng.AppMasterSecret = c.getString("push.umengPushOn.appKey", c.Push.Umeng.AppMasterSecret)
+
 	// apns
 	c.Push.APNS.Dev = c.getBool("push.apns.dev", c.Push.APNS.Dev)
 	c.Push.APNS.Topic = c.getString("push.apns.topic", c.Push.APNS.Topic)
@@ -1010,6 +1020,10 @@ type AliyunInternationalSMSConfig struct {
 	AccessKeyID  string // aliyun的AccessKeyID
 	AccessSecret string // aliyun的AccessSecret
 	SignName     string // 签名
+}
+type UmengPush struct {
+	Appkey          string
+	AppMasterSecret string
 }
 
 // 苹果推送
