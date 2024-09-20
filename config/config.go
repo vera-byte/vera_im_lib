@@ -217,16 +217,16 @@ type Config struct {
 	}
 	// ---------- push ----------
 	Push struct {
-		UmengPushOn     bool         // 是否开启友盟推送 开启则不走厂商推送
-		Umeng           UmengPush    // 友盟推送
-		ContentDetailOn bool         // 推送是否显示正文详情(如果为false，则只显示“您有一条新的消息” 默认为true)
-		PushPoolSize    int64        // 推送任务池大小
-		APNS            APNSPush     // 苹果推送
-		MI              MIPush       // 小米推送
-		HMS             HMSPush      // 华为推送
-		VIVO            VIVOPush     // vivo推送
-		OPPO            OPPOPush     // oppo推送
-		FIREBASE        FIREBASEPush // FIREBASE推送
+		PushServiceProvider string       // 不填默认为厂商推送 可选值为umeng
+		Umeng               UmengPush    // 友盟推送
+		ContentDetailOn     bool         // 推送是否显示正文详情(如果为false，则只显示“您有一条新的消息” 默认为true)
+		PushPoolSize        int64        // 推送任务池大小
+		APNS                APNSPush     // 苹果推送
+		MI                  MIPush       // 小米推送
+		HMS                 HMSPush      // 华为推送
+		VIVO                VIVOPush     // vivo推送
+		OPPO                OPPOPush     // oppo推送
+		FIREBASE            FIREBASEPush // FIREBASE推送
 	}
 	// ---------- message ----------
 	Message struct {
@@ -454,19 +454,23 @@ func New() *Config {
 		},
 		// ---------- push  ----------
 		Push: struct {
-			UmengPushOn     bool
-			Umeng           UmengPush
-			ContentDetailOn bool
-			PushPoolSize    int64
-			APNS            APNSPush
-			MI              MIPush
-			HMS             HMSPush
-			VIVO            VIVOPush
-			OPPO            OPPOPush
-			FIREBASE        FIREBASEPush
+			PushServiceProvider string
+			Umeng               UmengPush
+			ContentDetailOn     bool
+			PushPoolSize        int64
+			APNS                APNSPush
+			MI                  MIPush
+			HMS                 HMSPush
+			VIVO                VIVOPush
+			OPPO                OPPOPush
+			FIREBASE            FIREBASEPush
 		}{
-			UmengPushOn:     false,
-			Umeng:           UmengPush{},
+			PushServiceProvider: "",
+			Umeng: UmengPush{
+				Appkey:          "",
+				AppMasterSecret: "",
+				Dev:             false,
+			},
 			ContentDetailOn: true,
 			PushPoolSize:    100,
 			APNS: APNSPush{
@@ -697,9 +701,10 @@ func (c *Config) ConfigureWithViper(vp *viper.Viper) {
 	//#################### push ####################
 	c.Push.ContentDetailOn = c.getBool("push.contentDetailOn", c.Push.ContentDetailOn)
 	c.Push.PushPoolSize = c.getInt64("push.pushPoolSize", c.Push.PushPoolSize)
-	c.Push.UmengPushOn = c.getBool("push.umengPushOn", c.Push.UmengPushOn)
-	c.Push.Umeng.Appkey = c.getString("push.umengPushOn.appKey", c.Push.Umeng.Appkey)
-	c.Push.Umeng.AppMasterSecret = c.getString("push.umengPushOn.appKey", c.Push.Umeng.AppMasterSecret)
+	c.Push.PushServiceProvider = c.getString("push.pushServiceProvider", c.Push.PushServiceProvider)
+	c.Push.Umeng.Appkey = c.getString("push.umeng.appKey", c.Push.Umeng.Appkey)
+	c.Push.Umeng.AppMasterSecret = c.getString("push.umeng.secret", c.Push.Umeng.AppMasterSecret)
+	c.Push.Umeng.Dev = c.getBool("push.umeng.dev", c.Push.Umeng.Dev)
 
 	// apns
 	c.Push.APNS.Dev = c.getBool("push.apns.dev", c.Push.APNS.Dev)
@@ -1024,6 +1029,7 @@ type AliyunInternationalSMSConfig struct {
 type UmengPush struct {
 	Appkey          string
 	AppMasterSecret string
+	Dev             bool
 }
 
 // 苹果推送

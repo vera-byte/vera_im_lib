@@ -195,6 +195,14 @@ const AuthCodeTypeGroupMemberInvite AuthCodeType = "groupMemberInvite"
 // AuthCodeTypeScanLogin 扫描登录
 const AuthCodeTypeScanLogin AuthCodeType = "scanLogin"
 
+type PushProvider string
+
+// 推送服务商
+const (
+	// 友盟推送
+	PushProviderUmeng PushProvider = "umeng"
+)
+
 // DeviceType 设备类型
 type DeviceType string
 
