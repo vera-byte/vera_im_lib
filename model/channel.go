@@ -36,8 +36,11 @@ type ChannelResp struct {
 	Forbidden int    `json:"forbidden"` // 群是否全员禁言
 	Invite    int    `json:"invite"`    // 是否开启邀请
 
-	Flame       int `json:"flame"`        // 阅后即焚
-	FlameSecond int `json:"flame_second"` // 阅后即焚秒数
+	Flame          int    `json:"flame"`           // 阅后即焚
+	FlameSecond    int    `json:"flame_second"`    // 阅后即焚秒数
+	ChannelNo      int    `json:"channel_no"`      // 频道号
+	ChannelLabel   string `json:"channel_label"`   // 频道标签
+	ChannelAccount string `json:"channel_account"` // 频道账号
 
 	// 此内容在扩展内容内
 	// Screenshot          int `json:"screenshot"`             // 是否开启截屏通知
