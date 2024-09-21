@@ -38,7 +38,7 @@ type ChannelResp struct {
 
 	Flame          int    `json:"flame"`           // 阅后即焚
 	FlameSecond    int    `json:"flame_second"`    // 阅后即焚秒数
-	ChannelNo      int    `json:"channel_no"`      // 频道号
+	ChannelNo      string `json:"channel_no"`      // 频道号
 	ChannelLabel   string `json:"channel_label"`   // 频道标签
 	ChannelAccount string `json:"channel_account"` // 频道账号
 
