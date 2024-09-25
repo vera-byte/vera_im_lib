@@ -122,11 +122,16 @@ type Config struct {
 	}
 	// ---------- 系统账户设置 ----------
 	Account struct {
-		SystemUID       string //系统账号uid
-		FileHelperUID   string // 文件助手uid
-		SystemGroupID   string //系统群ID 需求在app_config表里设置new_user_join_system_group为1才有效
-		SystemGroupName string // 系统群的名字
-		AdminUID        string //系统管理员账号
+		SystemUID           string //系统账号uid
+		FileHelperUID       string // 文件助手uid
+		SystemGroupID       string //系统群ID 需求在app_config表里设置new_user_join_system_group为1才有效
+		SystemGroupName     string // 系统群的名字
+		AdminUID            string //系统管理员账号
+		SystemNoticeComment string //评论我的
+		SystemNoticeFollow  string // 新增关注
+		SystemNoticeLike    string // 收到点赞
+		SystemNoticeMessage string // 系统通知
+
 	}
 
 	// ---------- 文件服务 ----------
@@ -351,17 +356,25 @@ func New() *Config {
 
 		// ---------- 系统账户设置 ----------
 		Account: struct {
-			SystemUID       string
-			FileHelperUID   string
-			SystemGroupID   string
-			SystemGroupName string
-			AdminUID        string
+			SystemUID           string
+			FileHelperUID       string
+			SystemGroupID       string
+			SystemGroupName     string
+			AdminUID            string
+			SystemNoticeComment string
+			SystemNoticeFollow  string
+			SystemNoticeLike    string
+			SystemNoticeMessage string
 		}{
-			SystemUID:       "u_10000",
-			SystemGroupID:   "g_10000",
-			SystemGroupName: "意见反馈群",
-			FileHelperUID:   "fileHelper",
-			AdminUID:        "admin",
+			SystemUID:           "u_10000",
+			SystemGroupID:       "g_10000",
+			SystemGroupName:     "意见反馈群",
+			FileHelperUID:       "fileHelper",
+			AdminUID:            "admin",
+			SystemNoticeComment: "system:notice_comment",
+			SystemNoticeFollow:  "system:notice_follow",
+			SystemNoticeLike:    "system:notice_like",
+			SystemNoticeMessage: "system:notice_message",
 		},
 		// ---------- 文件服务 ----------
 		FileService: FileServiceMinio,
@@ -590,6 +603,10 @@ func (c *Config) ConfigureWithViper(vp *viper.Viper) {
 	c.Account.SystemGroupID = c.getString("account.systemGroupID", c.Account.SystemGroupID)
 	c.Account.SystemGroupName = c.getString("account.systemGroupName", c.Account.SystemGroupName)
 	c.Account.AdminUID = c.getString("account.adminUID", c.Account.AdminUID)
+	c.Account.AdminUID = c.getString("account.noticeMessage", c.Account.SystemNoticeMessage)
+	c.Account.AdminUID = c.getString("account.noticeLike", c.Account.SystemNoticeLike)
+	c.Account.AdminUID = c.getString("account.noticeFollow", c.Account.SystemNoticeFollow)
+	c.Account.AdminUID = c.getString("account.noticeComment", c.Account.SystemNoticeComment)
 
 	//#################### 文件服务 ####################
 	c.FileService = FileService(c.getString("fileService", c.FileService.String()))
