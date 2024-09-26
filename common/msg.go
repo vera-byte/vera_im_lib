@@ -123,6 +123,18 @@ func GetDisplayText(contentType int) string {
 		return "emoji"
 	} else if contentType == RichText.Int() {
 		return "富文本消息"
+	} else if contentType == SystemNoticeLike.Int() {
+		return "点赞"
+	} else if contentType == SystemNoticeComment.Int() {
+		return "评论"
+	} else if contentType == SystemNoticeMessage.Int() {
+		return "系统消息"
+	} else if contentType == SystemNoticeFollow.Int() {
+		return "关注"
+	} else if contentType == CarCard.Int() {
+		return "车源消息"
+	} else if contentType == CheckOrgCard.Int() {
+		return "检测机构商品"
 	}
 	return "未知消息类型"
 }
@@ -152,6 +164,7 @@ func (c ContentType) String() string {
 		return "GroupUpdate"
 	case RevokeMessage:
 		return "RevokeMessage"
+
 	}
 	return fmt.Sprintf("%d", c)
 }
