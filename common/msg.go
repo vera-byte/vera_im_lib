@@ -81,6 +81,14 @@ const (
 	// 群升级
 	GroupUpgrade ContentType = 1022
 
+	// ---------- 通知类 ----------
+	SystemNoticeLike    ContentType = 30 // 系统点赞通知
+	SystemNoticeComment ContentType = 31 // 系统评论通知
+	SystemNoticeMessage ContentType = 32 // 系统消息通知
+	SystemNoticeFollow  ContentType = 33 // 系统关注通知
+	CarCard             ContentType = 50 // 聊天车源卡片
+	CheckOrgCard        ContentType = 51 // 检测机构商品
+
 	// ---------- 客服类 ----------
 	HotlineAssignTo ContentType = 1200 // 分配客服
 	HotlineSolved   ContentType = 1201 // 已解决
