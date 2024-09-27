@@ -222,17 +222,21 @@ type Config struct {
 	}
 	// ---------- push ----------
 	Push struct {
-		PushServiceProvider string       // 不填默认为厂商推送 可选值为umeng
-		Umeng               UmengPush    // 友盟推送
-		ContentDetailOn     bool         // 推送是否显示正文详情(如果为false，则只显示“您有一条新的消息” 默认为true)
-		PushPoolSize        int64        // 推送任务池大小
-		APNS                APNSPush     // 苹果推送
-		MI                  MIPush       // 小米推送
-		HMS                 HMSPush      // 华为推送
-		VIVO                VIVOPush     // vivo推送
-		OPPO                OPPOPush     // oppo推送
-		FIREBASE            FIREBASEPush // FIREBASE推送
+		PushServiceProvider string // 不填默认为厂商推送 可选值为umeng
+		Umeng               struct {
+			IOS     UmengPush // 友盟推送
+			Android UmengPush // 友盟推送
+		} // 友盟推送    // 友盟推送
+		ContentDetailOn bool         // 推送是否显示正文详情(如果为false，则只显示“您有一条新的消息” 默认为true)
+		PushPoolSize    int64        // 推送任务池大小
+		APNS            APNSPush     // 苹果推送
+		MI              MIPush       // 小米推送
+		HMS             HMSPush      // 华为推送
+		VIVO            VIVOPush     // vivo推送
+		OPPO            OPPOPush     // oppo推送
+		FIREBASE        FIREBASEPush // FIREBASE推送
 	}
+
 	// ---------- message ----------
 	Message struct {
 		SendMessageOn                 bool // 是否开启接口发送发送消息
@@ -468,21 +472,34 @@ func New() *Config {
 		// ---------- push  ----------
 		Push: struct {
 			PushServiceProvider string
-			Umeng               UmengPush
-			ContentDetailOn     bool
-			PushPoolSize        int64
-			APNS                APNSPush
-			MI                  MIPush
-			HMS                 HMSPush
-			VIVO                VIVOPush
-			OPPO                OPPOPush
-			FIREBASE            FIREBASEPush
+			Umeng               struct {
+				IOS     UmengPush // 友盟推送
+				Android UmengPush // 友盟推送
+			} // 友盟推送    // 友盟推
+			ContentDetailOn bool
+			PushPoolSize    int64
+			APNS            APNSPush
+			MI              MIPush
+			HMS             HMSPush
+			VIVO            VIVOPush
+			OPPO            OPPOPush
+			FIREBASE        FIREBASEPush
 		}{
 			PushServiceProvider: "",
-			Umeng: UmengPush{
-				Appkey:          "",
-				AppMasterSecret: "",
-				Dev:             false,
+			Umeng: struct {
+				IOS     UmengPush
+				Android UmengPush
+			}{
+				IOS: UmengPush{
+					Appkey:          "",
+					AppMasterSecret: "",
+					Dev:             false,
+				},
+				Android: UmengPush{
+					Appkey:          "",
+					AppMasterSecret: "",
+					Dev:             false,
+				},
 			},
 			ContentDetailOn: true,
 			PushPoolSize:    100,
@@ -719,9 +736,13 @@ func (c *Config) ConfigureWithViper(vp *viper.Viper) {
 	c.Push.ContentDetailOn = c.getBool("push.contentDetailOn", c.Push.ContentDetailOn)
 	c.Push.PushPoolSize = c.getInt64("push.pushPoolSize", c.Push.PushPoolSize)
 	c.Push.PushServiceProvider = c.getString("push.pushServiceProvider", c.Push.PushServiceProvider)
-	c.Push.Umeng.Appkey = c.getString("push.umeng.appKey", c.Push.Umeng.Appkey)
-	c.Push.Umeng.AppMasterSecret = c.getString("push.umeng.secret", c.Push.Umeng.AppMasterSecret)
-	c.Push.Umeng.Dev = c.getBool("push.umeng.dev", c.Push.Umeng.Dev)
+	c.Push.Umeng.Android.Appkey = c.getString("push.umeng.android.appKey", c.Push.Umeng.Android.Appkey)
+	c.Push.Umeng.Android.AppMasterSecret = c.getString("push.umeng.android.secret", c.Push.Umeng.Android.AppMasterSecret)
+	c.Push.Umeng.Android.Dev = c.getBool("push.umeng.android.dev", c.Push.Umeng.Android.Dev)
+
+	c.Push.Umeng.IOS.Appkey = c.getString("push.umeng.ios.appKey", c.Push.Umeng.Android.Appkey)
+	c.Push.Umeng.IOS.AppMasterSecret = c.getString("push.umeng.ios.secret", c.Push.Umeng.Android.AppMasterSecret)
+	c.Push.Umeng.IOS.Dev = c.getBool("push.umeng.ios.dev", c.Push.Umeng.IOS.Dev)
 
 	// apns
 	c.Push.APNS.Dev = c.getBool("push.apns.dev", c.Push.APNS.Dev)
