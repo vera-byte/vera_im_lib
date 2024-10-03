@@ -164,6 +164,18 @@ func (c ContentType) String() string {
 		return "GroupUpdate"
 	case RevokeMessage:
 		return "RevokeMessage"
+	case SystemNoticeComment:
+		return "SystemNoticeComment"
+	case SystemNoticeLike:
+		return "SystemNoticeLike"
+	case SystemNoticeMessage:
+		return "SystemNoticeMessage"
+	case SystemNoticeFollow:
+		return "SystemNoticeFollow"
+	case CarCard:
+		return "CarCard"
+	case CheckOrgCard:
+		return "CheckOrgCard"
 
 	}
 	return fmt.Sprintf("%d", c)
