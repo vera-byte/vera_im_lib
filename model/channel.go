@@ -48,5 +48,5 @@ type ChannelResp struct {
 	// AllowViewHistoryMsg int `json:"allow_view_history_msg"` // 是否允许新成员查看群历史记录
 
 	Extra         map[string]interface{} `json:"extra"` // 扩展内容
-	AvatarVersion int                    `json:"avatar_version"`
+	AvatarVersion int64                  `json:"avatar_version"`
 }
