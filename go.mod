@@ -16,6 +16,7 @@ require (
 	github.com/mattn/go-sqlite3 v1.14.17
 	github.com/olivere/elastic v6.2.37+incompatible
 	github.com/opentracing/opentracing-go v1.2.0
+	github.com/panjf2000/ants/v2 v2.10.0
 	github.com/rubenv/sql-migrate v1.5.2
 	github.com/sendgrid/rest v2.6.9+incompatible
 	github.com/sourcegraph/syntaxhighlight v0.0.0-20170531221838-bd320f5d308e
@@ -113,7 +114,7 @@ require (
 	golang.org/x/arch v0.3.0 // indirect
 	golang.org/x/net v0.12.0 // indirect
 	golang.org/x/oauth2 v0.7.0 // indirect
-	golang.org/x/sync v0.2.0 // indirect
+	golang.org/x/sync v0.3.0 // indirect
 	golang.org/x/sys v0.10.0 // indirect
 	golang.org/x/text v0.11.0 // indirect
 	google.golang.org/api v0.122.0 // indirect

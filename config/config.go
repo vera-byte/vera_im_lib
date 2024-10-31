@@ -236,7 +236,6 @@ type Config struct {
 		OPPO            OPPOPush     // oppo推送
 		FIREBASE        FIREBASEPush // FIREBASE推送
 	}
-
 	// ---------- message ----------
 	Message struct {
 		SendMessageOn                 bool // 是否开启接口发送发送消息
